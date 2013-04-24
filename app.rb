@@ -9,6 +9,17 @@ class Link
   include DataMapper::Resource
   has n, :views
 
+  validates_presence_of :url,
+    message: "You must specify a URL."
+  validates_length_of   :url,
+    maximum: 4096,
+    allow_blank: true,
+    message: "That URL is too long."
+  validates_format_of :url,
+    with: %r{^(https?|ftp)://.+}i,
+    allow_blank: true,
+    message: "The URL must start with http://, https://, or ftp:// ."
+
   property :id,         Serial
   property :url,        String
   property :token,      String
