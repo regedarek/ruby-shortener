@@ -3,25 +3,21 @@
   %a{href: '/' + @link.code}
     = h(root_url + '/' + @link.code)
   
-  %br
+  %p
+    %b Original URL: 
+    %a{href: u(@link.url)}
+      = h(@link.url)
 
-  %b Original URL: 
-  %a{href: u(@link.url)}
-    = h(@link.url)
+  %p
+    %b Created:
+    = @link.created_at.strftime('%A, %B %d, %Y at %I:%M %p')
 
-  %br
+    - if @link.views.any?
+      %br
+      %b Browser views:
+      = View.stats(@link.id)
 
-  %b Created:
-  = @link.created_at.strftime('%A, %B %d, %Y at %I:%M %p')
-
-  - if @link.views.any?
-    %br
-    %b Browser views:
-    = View.stats(@link.id)
-
-  %br
-  %br
-
-  %b Remember link to statistics:
-  %a{href: '/' +  "#{@link.code}/stats?token=#{@link.token}"}
-    = h(root_url + '/' + "#{@link.code}/stats?token=#{@link.token}")
+  %p
+    %b Remember link to statistics:
+    %a{href: '/' +  "#{@link.code}/stats?token=#{@link.token}"}
+      = h(root_url + '/' + "#{@link.code}/stats?token=#{@link.token}")
