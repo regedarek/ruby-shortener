@@ -1,0 +1,10 @@
+#new
+  - unless @link.errors.empty?
+    .error
+      - for error in @link.errors.on(:url)
+        %p= error
+ 
+  %form{action: '/', method: 'post'}
+    %label
+      %input{type: 'text', size: '50', name: 'link[url]', value: @link.url}/
+    %input{type: 'submit', value: 'Shorten!'}/
