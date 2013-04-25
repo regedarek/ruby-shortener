@@ -1,4 +1,4 @@
-%w(rubygems sinatra useragent data_mapper uri).each  { |lib| require lib}
+%w(rubygems haml sinatra useragent data_mapper uri).each  { |lib| require lib}
 
 %w(link view).each  { |model|  require_relative "models/#{model}"   }
 %w(main).each       { |helper| require_relative "helpers/#{helper}" }
