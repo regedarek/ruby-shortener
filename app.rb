@@ -78,6 +78,7 @@ end
 # Redirect the visitor to the URL statistics
 get '/:code/stats' do
   @link = Link.find_by_code!(params[:code])
+  @views = View.stats(@link.id)
   redirect root_url unless params[:token] == @link.token
   haml :show
 end
